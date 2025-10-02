@@ -1,5 +1,6 @@
-const {app, BrowserWindow} = require('electron')
-const path = require(path)
+const {app, BrowserWindow} = require("electron")
+const path = require("path")
+const myModule = require("../../L2M/myModule.js")
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -10,10 +11,10 @@ function createWindow () {
     }
   })
   // ladda index.html
-  win.loadFile.File(path.resolve(__dirname, '../public/index.html'))
+  win.loadFile(path.join(__dirname, '../public/index.html'))
 }
 app.whenReady().then(createWindow)
 
-app.on("window-all-closed", () =>{
-  if(process.platform!=="darwin") app.quit()
+app.on("activate", () =>{
+  if(BrowserWindow.getAllWindows().length === 0) createWindow()
 })
