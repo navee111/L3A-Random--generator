@@ -1,5 +1,5 @@
 import React from 'react'
-
+import myModule from "random--generator"
 function App() {
   return (
     <div>

@@ -1,4 +1,4 @@
-import PasswordGenerator from './PasswordGenerator.js'
+import PasswordGenerator from './passwordGenerator.js'
 import NameGenerator from './NameGenerator.js'
 
 /**
