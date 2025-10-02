@@ -1,5 +1,17 @@
 {
+  "name": "l3a-random-generator-app",
+  "version": "1.0.0",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
   "dependencies": {
-    "random--generator": "^1.0.1"
+    "ditt-modul-namn": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "electron": "^26.0.0"
   }
 }
+
