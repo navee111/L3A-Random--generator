@@ -1,20 +1,39 @@
 const {app, BrowserWindow} = require("electron")
 const path = require("path")
-const myModule = require("../../L2M/myModule.js")
 
-function createWindow () {
+let RandomGenerator
+
+async function loadModule() {
+  // Dynamisk import för ES module
+  RandomGenerator = await import("random--generator")
+}
+
+async function createWindow () {
+  await loadModule()  // Ladda modulen först
+  
   const win = new BrowserWindow({
     width: 700,
     height: 500,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js') // kan tas bort senare
+      nodeIntegration: true,
+      contextIsolation: false
     }
   })
-  // ladda index.html
+  
   win.loadFile(path.join(__dirname, '../public/index.html'))
+  
+  
+  console.log(RandomGenerator)
 }
+
 app.whenReady().then(createWindow)
 
-app.on("activate", () =>{
+app.on("activate", () => {
   if(BrowserWindow.getAllWindows().length === 0) createWindow()
+})
+
+app.on('window-all-closed', () => {
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
 })
