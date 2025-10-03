@@ -14,3 +14,46 @@ function copyToclipborad(elemntId) {
   const text =document.getElementById(elementId).textContent
   navigator.clipboard.writeText(text).then(() =>('Copied to clipboard'))
 }
+
+// UI Tab
+function switchTab(tabName, event) {
+  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'))
+  document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'))
+
+  document.getElementById(`${tabName}-tab`).classList.add('active')
+  event.target.classList.add('active')
+}
+
+// generators 
+async function generatePassword() {
+  const config = {
+    length: parseInt(document.getElementById('pwd-length').value),
+    includeUppercase: document.getElementById('pwd-uppercase').checked,
+    includeLowercase: document.getElementById('pwd-lowercase').checked,
+    includeNumbers: document.getElementById('pwd-numbers').checked,
+    includeSymbols: document.getElementById('pwd-symbols').checked
+  }
+
+  try {
+    const password = await ipcRenderer.invoke('generate-password', config)
+    updateResult('password-result', 'copy-password', password)
+  } catch (error) {
+    handleError(error, 'password-result')
+  }
+}
+
+async function generateName() {
+  const config = {
+    type: document.getElementById('name-type').value,
+    gender: document.getElementById('name-gender').value
+  }
+
+  try {
+    const name = await ipcRenderer.invoke('generate-name', config)
+    updateResult('name-result', 'copy-name', name)
+  } catch (error) {
+    handleError(error, 'name-result')
+  }
+}
+ 
+// to do for next time generateusername function
