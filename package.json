@@ -9,7 +9,7 @@
     "build:win": "electron-builder --win",
     "build:linux": "electron-builder --linux"
   },
-   "author": "Nawid",
+  "author": "Nawid",
   "license": "MIT",
   "build": {
     "appId": "com.randomgenerator.app",
@@ -19,37 +19,35 @@
     }
   },
   "files": [
-      "src/**/*",
-      "public/**/*",
-      "node_modules/**/*",
-      "package.json"
-    ],
-    "mac": {
-      "category": "public.app-category.utilities",
-      "target": ["dmg", "zip"]
-    },
-    "win": {
-      "target": ["nsis", "portable"]
-    },
-    "linux": {
-      "target": ["AppImage", "deb"]
-    },
- "dependencies": {
+    "src/**/*",
+    "public/**/*",
+    "node_modules/**/*",
+    "package.json"
+  ],
+  "mac": {
+    "category": "public.app-category.utilities",
+    "target": [
+      "dmg",
+      "zip"
+    ]
+  },
+  "win": {
+    "target": [
+      "nsis",
+      "portable"
+    ]
+  },
+  "linux": {
+    "target": [
+      "AppImage",
+      "deb"
+    ]
+  },
+  "dependencies": {
     "random--generator": "file:../Random--generator"
   },
   "devDependencies": {
     "electron": "^28.0.0",
     "electron-builder": "^24.9.1"
   }
-  
 }
-
-
-
-  
-
-
-
-
-
-
