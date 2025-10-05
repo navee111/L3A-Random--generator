@@ -1,5 +1,7 @@
-const {app, BrowserWindow} = require("electron")
+const {app, BrowserWindow,ipcMain} = require("electron")
+const { type } = require("os")
 const path = require("path")
+const { config } = require("process")
 
 let RandomGenerator
 
@@ -25,6 +27,23 @@ async function createWindow () {
   
   console.log(RandomGenerator)
 }
+ipcMain.handle('generate-password',async (event, config) => {
+  const generator = new RandomGenerator.default()
+  return generator.generatePassword(type, gender)
+  
+})
+ipcMain.handle('generate-name',async (event, type, gender)=> {
+  const generator = new RandomGenerator.default()
+  return generator.generateName(type, gender)
+})
+ipcMain.handle('generate-username', async (event, style, maxLength) => {
+  const generator = new RandomGenerator.default()
+  return generator.generateUsername(style, maxLength)
+})
+ipcMain.handle('generate-business', async (event, industry) => {
+  const generator = new RandomGenerator.default()
+  return generator.generateBusiness(industry)
+})
 
 app.whenReady().then(createWindow)
 
