@@ -23,26 +23,31 @@ async function createWindow () {
   })
   
   win.loadFile(path.join(__dirname, '../public/index.html'))
-  
-  
-  console.log(RandomGenerator)
+   win.webContents.openDevTools()
 }
-ipcMain.handle('generate-password',async (event, config) => {
+ipcMain.handle('generate-password', async (event, config) => {
   const generator = new RandomGenerator.default()
-  return generator.generatePassword(type, gender)
-  
+  return generator.generatePassword(config.length, {
+    includeUppercase: config.includeUppercase,
+    includeLowercase: config.includeLowercase,
+    includeNumbers: config.includeNumbers,
+    includeSymbols: config.includeSymbols
+  })
 })
-ipcMain.handle('generate-name',async (event, type, gender)=> {
+
+ipcMain.handle('generate-name', async (event, config) => {
   const generator = new RandomGenerator.default()
-  return generator.generateName(type, gender)
+  return generator.generateName(config.type, config.gender)
 })
-ipcMain.handle('generate-username', async (event, style, maxLength) => {
+
+ipcMain.handle('generate-username', async (event, config) => {
   const generator = new RandomGenerator.default()
-  return generator.generateUsername(style, maxLength)
+  return generator.generateUsername(config.style, config.maxLength)
 })
-ipcMain.handle('generate-business', async (event, industry) => {
+
+ipcMain.handle('generate-business', async (event, config) => {
   const generator = new RandomGenerator.default()
-  return generator.generateBusiness(industry)
+  return generator.generateBusinessName(config.industry)
 })
 
 app.whenReady().then(createWindow)
