@@ -55,5 +55,30 @@ async function generateName() {
     handleError(error, 'name-result')
   }
 }
- 
-// to do for next time generateusername function
+
+async function generateUsername() {
+  const config = {
+    style: document.getElementById('username-style').value,
+    maxLength: parseInt(document.getElementById('username-length').value)
+  }
+
+  try {
+    const username = await ipcRenderer.invoke('generate-username', config)
+    updateResult('username-result', 'copy-username', username)
+  } catch (error) {
+    handleError(error, 'username-result')
+  }
+}
+
+async function generateBusiness() {
+  const config = {
+    industry: document.getElementById('business-industry').value
+  }
+
+  try {
+    const businessName = await ipcRenderer.invoke('generate-business', config)
+    updateResult('business-result', 'copy-business', businessName)
+  } catch (error) {
+    handleError(error, 'business-result')
+  }
+}
