@@ -10,7 +10,7 @@ function updateResult(resultElementId, copyButtonId, value) {
   document.getElementById(copyButtonId).disabled = false
 }
 
-function copyToclipborad(elemntId) {
+function copyToClipboard(elementId) {
   const text =document.getElementById(elementId).textContent
   navigator.clipboard.writeText(text).then(() =>('Copied to clipboard'))
 }
