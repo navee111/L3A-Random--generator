@@ -7,7 +7,7 @@ let RandomGenerator
 
 async function loadModule() {
   try {
-    RandomGenerator = await import("random--generator")
+    RandomGenerator = await import("Random--generator")
   } catch (error) {
     console.error("Failed to load module:", error)
   }
@@ -49,7 +49,7 @@ class Appcontroller {
   }
 
   #createGenerator() {
-    return new RandomGeneratorModule.default()
+    return new RandomGenerator.default()
   }
 
   #generatePassword(config) {

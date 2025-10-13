@@ -5,6 +5,7 @@ const { ipcRenderer } = require('electron')
  */
  class UIController {
   constructor() {
+    console.log('UiController loaded')
     this.#registerEventListeners()
 }
 
@@ -94,3 +95,6 @@ async #handleGeneration(channel, config, resultElementId, copyButtonId) {
     document.getElementById('generate-business-btn')?.addEventListener('click', () => this.generateBusiness())
   }
 }
+document.addEventListener('DOMContentLoaded', () => {
+  new UIController()
+})

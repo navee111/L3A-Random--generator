@@ -13,10 +13,10 @@
         </header>
         
         <div class="tabs">
-            <button class="tab active" onclick="switchTab('password')">Password</button>
-            <button class="tab" onclick="switchTab('name')">Name</button>
-            <button class="tab" onclick="switchTab('username')">Username</button>
-            <button class="tab" onclick="switchTab('business')">Business</button>
+            <button class="tab active" id="password-tab-btn">Password</button>
+            <button class="tab" id="name-tab-btn">Name</button>
+            <button class="tab" id="username-tab-btn">Username</button>
+            <button class="tab" id="business-tab-btn">Business</button>
         </div>
         
         <!-- Password Tab -->
@@ -43,7 +43,8 @@
                     <label class="checkbox-label">Include Symbols</label>
                 </div>
             </div>
-            <button class="generate" onclick="generatePassword()">Generate Password</button>
+            <button class="generate" id="generate-password-btn">Generate Password</button>
+
             <div class="result-area">
                 <div class="result" id="password-result">Click generate to create a password</div>
                 <button class="copy" id="copy-password" disabled onclick="copyToClipboard('password-result')">Copy</button>
