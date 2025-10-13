@@ -66,6 +66,21 @@ async function loadModule() {
   })
 }
 
+#generateName(config) {
+  const generator = this.#createGenerator()
+  return generator.generateName(config.type, config.gender)
+}
+
+#generateUsername(config) {
+  const generator = this.#createGenerator()
+  return generator.generateUsername(config.style, config.maxLength)
+}
+
+#generateBusinessName(config) {
+  const generator = this.#createGenerator()
+  return generator.generateBusinessName(config.industry)
+}
+
 
 
 
