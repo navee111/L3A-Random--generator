@@ -6,8 +6,11 @@ const { config } = require("process")
 let RandomGenerator
 
 async function loadModule() {
-  // Dynamisk import för ES module
-  RandomGenerator = await import("random--generator")
+  try {
+    RandomGenerator = await import("random--generator")
+  } catch (error) {
+    console.error("Failed to load module:", error)
+  }
 }
 
 async function createWindow () {
