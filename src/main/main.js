@@ -51,6 +51,27 @@ async function loadModule() {
     this.#generateBusinessName(config)
   )
   }
+
+#createGenerator() {
+  return new RandomGeneratorModule.default()
+}
+
+#generatePassword(config) {
+  const generator = this.#createGenerator()
+  return generator.generatePassword(config.length, {
+    includeUppercase: config.includeUppercase,
+    includeLowercase: config.includeLowercase,
+    includeNumbers: config.includeNumbers,
+    includeSymbols: config.includeSymbols
+  })
+}
+
+
+
+
+
+
+
 async function createWindow () {
   await loadModule()  // Ladda modulen först
   
