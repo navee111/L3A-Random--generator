@@ -27,6 +27,7 @@ It eliminate the need for multiple online tools and makes sure that users can ge
 ### general features 
 **FR10:** The system should provide a responsive tab-based interface for users to switching between different generators. example below 
 ![App Screenshot](RG.jpeg)
+
 **FR11:** The system should include a “Copy” button for each generator.  
 **FR12:** The system should visually animate the result box each time new content is generated.  
 **FR13:** The system should store no user data, ensuring privacy and local-only functionality.  

@@ -13,9 +13,9 @@ async function loadModule() {
   }
 }
 /**
- * klass för att hantera fönster.
+ * class main logic.
  */
-class Appcontroller {
+class AppController {
   #window
   async init() {
     await loadModule()
