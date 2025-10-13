@@ -1,4 +1,14 @@
 const { ipcRenderer } = require('electron') 
+// ui logik
+ class UiController {
+  constructor() {
+    this.#registerEventListeners()
+  }
+}
+
+
+
+
 
 
 function handleError(error, resultElementId) {
