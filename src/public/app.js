@@ -42,6 +42,24 @@ switchTab(tabName, event) {
   event.target.classList.add('active')
 }
 
+// private helpers.
+async #handleGeneration(channel, config, resultElementId, copyButtonId) {
+  try {
+    const result = await ipcRenderer.invoke(channel, config)
+    this.#updateResult(resultElementId, copyButtonId, result)
+  } catch (error) {
+    this.#showError(error, resultElementId)
+  }
+}
+#updateResult(resultElementId, copyButtonId, value) {
+  document.getElementById(resultElementId).textContent = value
+  document.getElementById(copyButtonId).disabled = false
+}
+
+#showError(error, resultElementId) {
+  document.getElementById(resultElementId).textContent = `Error: ${error.message}`
+}
+
 
 
 
