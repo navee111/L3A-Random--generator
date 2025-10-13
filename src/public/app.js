@@ -1,10 +1,18 @@
 const { ipcRenderer } = require('electron') 
-// ui logik
- class UiController {
+ 
+/**
+ * hantera ui logik. 
+ */
+ class UIController {
   constructor() {
-    this.#registerEventListeners()
-  }
+    this.#setupEventListeners()
+ }
 }
+
+
+
+
+
 
 
 
