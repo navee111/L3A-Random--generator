@@ -89,11 +89,24 @@ async #handleGeneration(channel, config, resultElementId, copyButtonId) {
 }
 
  #registerEventListeners() {
-    document.getElementById('generate-password-btn')?.addEventListener('click', () => this.generatePassword())
-    document.getElementById('generate-name-btn')?.addEventListener('click', () => this.generateName())
-    document.getElementById('generate-username-btn')?.addEventListener('click', () => this.generateUsername())
-    document.getElementById('generate-business-btn')?.addEventListener('click', () => this.generateBusiness())
-  }
+  // Generate buttons
+  document.getElementById('generate-password-btn')?.addEventListener('click', () => this.generatePassword())
+  document.getElementById('generate-name-btn')?.addEventListener('click', () => this.generateName())
+  document.getElementById('generate-username-btn')?.addEventListener('click', () => this.generateUsername())
+  document.getElementById('generate-business-btn')?.addEventListener('click', () => this.generateBusiness())
+
+  // Copy buttons
+  document.getElementById('copy-password')?.addEventListener('click', () => this.copyToClipboard('password-result'))
+  document.getElementById('copy-name')?.addEventListener('click', () => this.copyToClipboard('name-result'))
+  document.getElementById('copy-username')?.addEventListener('click', () => this.copyToClipboard('username-result'))
+  document.getElementById('copy-business')?.addEventListener('click', () => this.copyToClipboard('business-result'))
+
+  // Tab buttons
+  document.getElementById('password-tab-btn')?.addEventListener('click', () => this.switchTab('password'))
+  document.getElementById('name-tab-btn')?.addEventListener('click', () => this.switchTab('name'))
+  document.getElementById('username-tab-btn')?.addEventListener('click', () => this.switchTab('username'))
+  document.getElementById('business-tab-btn')?.addEventListener('click', () => this.switchTab('business'))
+}
 }
 document.addEventListener('DOMContentLoaded', () => {
   new UIController()
