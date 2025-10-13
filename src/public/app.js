@@ -9,6 +9,27 @@ const { ipcRenderer } = require('electron')
  }
 }
 
+// public ui 
+async generatePassword() {
+  const config = this.#getPasswordConfig()
+  await this.#handleGeneration('generate-password', config, 'password-result', 'copy-password')
+}
+
+async generateName() {
+  const config = this.#getNameConfig()
+  await this.#handleGeneration('generate-name', config, 'name-result', 'copy-name')
+}
+
+async generateUsername() {
+  const config = this.#getUsernameConfig()
+  await this.#handleGeneration('generate-username', config, 'username-result', 'copy-username')
+}
+
+async generateBusiness() {
+  const config = this.#getBusinessConfig()
+  await this.#handleGeneration('generate-business', config, 'business-result', 'copy-business')
+}
+
 
 
 
