@@ -30,6 +30,19 @@ async generateBusiness() {
   await this.#handleGeneration('generate-business', config, 'business-result', 'copy-business')
 }
 
+copyToClipboard(elementId) {
+  const text = document.getElementById(elementId).textContent
+  navigator.clipboard.writeText(text).then(() => console.log('Copied to clipboard'))
+}
+
+switchTab(tabName, event) {
+  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'))
+  document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'))
+  document.getElementById(`${tabName}-tab`).classList.add('active')
+  event.target.classList.add('active')
+}
+
+
 
 
 
