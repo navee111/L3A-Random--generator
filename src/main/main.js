@@ -81,3 +81,16 @@ async function loadModule() {
   return generator.generateBusinessName(config.industry)
 }
 
+ const controller = new Appcontroller()
+  app.whenReady().then(() => controller.init())
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) 
+      controller.init()
+  })
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+      app.quit()
+    }
+  })
+
