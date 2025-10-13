@@ -11,14 +11,14 @@
         <header>
             <h1>Random Generator</h1>
         </header>
-        
+
         <div class="tabs">
             <button class="tab active" id="password-tab-btn">Password</button>
             <button class="tab" id="name-tab-btn">Name</button>
             <button class="tab" id="username-tab-btn">Username</button>
             <button class="tab" id="business-tab-btn">Business</button>
         </div>
-        
+
         <!-- Password Tab -->
         <div id="password-tab" class="tab-content active">
             <div class="options">
@@ -44,13 +44,12 @@
                 </div>
             </div>
             <button class="generate" id="generate-password-btn">Generate Password</button>
-
             <div class="result-area">
                 <div class="result" id="password-result">Click generate to create a password</div>
-                <button class="copy" id="copy-password" disabled onclick="copyToClipboard('password-result')">Copy</button>
+                <button class="copy" id="copy-password" disabled>Copy</button>
             </div>
         </div>
-        
+
         <!-- Name Tab -->
         <div id="name-tab" class="tab-content">
             <div class="options">
@@ -71,13 +70,13 @@
                     </select>
                 </div>
             </div>
-            <button class="generate" onclick="generateName()">Generate Name</button>
+            <button class="generate" id="generate-name-btn">Generate Name</button>
             <div class="result-area">
                 <div class="result" id="name-result">Click generate to create a name</div>
-                <button class="copy" id="copy-name" disabled onclick="copyToClipboard('name-result')">Copy</button>
+                <button class="copy" id="copy-name" disabled>Copy</button>
             </div>
         </div>
-        
+
         <!-- Username Tab -->
         <div id="username-tab" class="tab-content">
             <div class="options">
@@ -94,13 +93,13 @@
                     <input type="number" id="username-length" min="5" max="30" value="15">
                 </div>
             </div>
-            <button class="generate" onclick="generateUsername()">Generate Username</button>
+            <button class="generate" id="generate-username-btn">Generate Username</button>
             <div class="result-area">
                 <div class="result" id="username-result">Click generate to create a username</div>
-                <button class="copy" id="copy-username" disabled onclick="copyToClipboard('username-result')">Copy</button>
+                <button class="copy" id="copy-username" disabled>Copy</button>
             </div>
         </div>
-        
+
         <!-- Business Tab -->
         <div id="business-tab" class="tab-content">
             <div class="options">
@@ -115,10 +114,10 @@
                     </select>
                 </div>
             </div>
-            <button class="generate" onclick="generateBusiness()">Generate Business Name</button>
+            <button class="generate" id="generate-business-btn">Generate Business Name</button>
             <div class="result-area">
                 <div class="result" id="business-result">Click generate to create a business name</div>
-                <button class="copy" id="copy-business" disabled onclick="copyToClipboard('business-result')">Copy</button>
+                <button class="copy" id="copy-business" disabled>Copy</button>
             </div>
         </div>
     </div>
