@@ -12,7 +12,45 @@ async function loadModule() {
     console.error("Failed to load module:", error)
   }
 }
-
+ /**
+  * klass för att hantera fönster.
+  */
+  class Appcontroller {
+    #window
+    async init(){
+      await loadModule()
+      this.#createWindow()
+      this.#registerIpcHandlers()
+      
+    }
+    #createWindow() {
+      this.#window = new BrowserWindow({
+        width: 700,
+        height: 500,
+        webPreferences: {
+          nodeIntegration: true,
+          contextIsolation: false
+        }
+      })
+      this.#window.loadFile(path.join(__dirname, '../public/index.html'))
+      this.#window.webContents.openDevTools()
+    }
+  }
+  
+  #registerIpcHandlers() {
+    ipcMain.handle('generate-password', (_, config) => 
+    this.#generatePassword(config)
+  )
+    ipcMain.handle('generate-name', (_, config) =>
+    this.#generateName(config)
+  )
+    ipcMain.handle('generate-username', (_, config) =>
+    this.#generateUsername(config)
+  )
+    ipcMain.handle('generate-business', (_, config) =>
+    this.#generateBusinessName(config)
+  )
+  }
 async function createWindow () {
   await loadModule()  // Ladda modulen först
   
