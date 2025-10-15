@@ -78,14 +78,19 @@ class AppController {
   }
 }
 
-const controller = new AppController()
-app.whenReady().then(() => controller.init())
+module.exports = { AppController }
 
-app.on("activate", () => {
-  if (BrowserWindow.getAllWindows().length === 0) controller.init()
-})
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit()
-  }
-})
+// Only run the app lifecycle when executed directly, not when imported by tests
+if (require.main === module) {
+  const controller = new AppController()
+  app.whenReady().then(() => controller.init())
+
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) controller.init()
+  })
+  app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") {
+      app.quit()
+    }
+  })
+}
