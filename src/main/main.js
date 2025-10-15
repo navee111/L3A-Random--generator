@@ -78,7 +78,7 @@ class AppController {
   }
 }
 
-const controller = new Appcontroller()
+const controller = new AppController()
 app.whenReady().then(() => controller.init())
 
 app.on("activate", () => {
