@@ -7,7 +7,9 @@
     "build": "electron-builder",
     "build:mac": "electron-builder --mac",
     "build:win": "electron-builder --win",
-    "build:linux": "electron-builder --linux"
+    "build:linux": "electron-builder --linux",
+    "test": "jest --runInBand",
+    "test:watch": "jest --watch"
   },
   "author": "Nawid",
   "license": "MIT",
