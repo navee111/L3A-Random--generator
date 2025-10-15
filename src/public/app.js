@@ -5,7 +5,7 @@ const { ipcRenderer } = require('electron')
  */
  class UIController {
   constructor() {
-    console.log('UiController loaded')
+    //console.log('UiController loaded')
     this.#registerEventListeners()
 }
 

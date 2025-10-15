@@ -32,7 +32,7 @@ class AppController {
       },
     })
     this.#window.loadFile(path.join(__dirname, "../public/index.html"))
-    this.#window.webContents.openDevTools()
+    //this.#window.webContents.openDevTools()
   }
 
   #registerIpcHandlers() {
