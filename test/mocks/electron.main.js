@@ -5,5 +5,6 @@ class BrowserWindow {
   static getAllWindows() { return [] }
 }
 const ipcMain = { handle: jest.fn() }
-const app = { whenReady: () => ({ then: fn => fn() }), on: () => {} }
+// Return a real Promise so code that does app.whenReady().then(...) works
+const app = { whenReady: () => Promise.resolve(), on: jest.fn() }
 module.exports = { BrowserWindow, ipcMain, app }
