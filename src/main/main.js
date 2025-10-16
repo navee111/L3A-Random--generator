@@ -8,6 +8,11 @@ let RandomGenerator
 async function loadModule() {
   try {
     RandomGenerator = await import("Random--generator")
+  if (process.env.JEST_WORKER_ID) {
+    RandomGenerator = require("Random--generator")
+  } else {
+    RandomGenerator = await import("Random--generator") 
+  }
   } catch (error) {
     console.error("Failed to load module:", error)
   }

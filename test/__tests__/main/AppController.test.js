@@ -21,7 +21,7 @@ describe('AppController', () => {
   test('password handler calls generator and returns value', async () => {
     const ctrl = new AppController()
     await ctrl.init()
-    const [, , handler] = electron.ipcMain.handle.mock.calls[0] // ("generate-password", (_, config)=>...)
+    const handler = electron.ipcMain.handle.mock.calls[0][1]
     const res = await handler(null, {
       length: 10,
       includeUppercase: true,

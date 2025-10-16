@@ -15,7 +15,7 @@ describe('UIController', () => {
       <input id="pwd-numbers" checked />
       <input id="pwd-symbols" />
     `
-    UIController = require('../../src/public/app.js').UIController
+    UIController = require('../../../src/public/app.js').UIController
   })
 
   test('generatePassword updates DOM and enables copy', async () => {
