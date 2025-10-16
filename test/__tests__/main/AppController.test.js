@@ -1,5 +1,5 @@
 jest.mock('electron') // uses main mock
-jest.mock('Random--generator') // uses generator mock
+// Don't mock Random--generator here, let the moduleNameMapper handle it
 
 describe('AppController', () => {
   let AppController, electron
@@ -22,6 +22,7 @@ describe('AppController', () => {
     const ctrl = new AppController()
     await ctrl.init()
     const handler = electron.ipcMain.handle.mock.calls[0][1]
+    
     const res = await handler(null, {
       length: 10,
       includeUppercase: true,

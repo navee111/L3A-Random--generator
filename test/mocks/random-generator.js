@@ -1,8 +1,17 @@
-module.exports = {
-  default: class {
-    generatePassword() { return 'PWD' }
-    generateName() { return 'NAME' }
-    generateUsername() { return 'USER' }
-    generateBusinessName() { return 'BIZ' }
+const RandomGeneratorMock = class {
+  generatePassword(length, options) { 
+    return 'PWD' 
+  }
+  generateName(type, gender) { 
+    return 'NAME' 
+  }
+  generateUsername(style, maxLength) { 
+    return 'USER' 
+  }
+  generateBusinessName(industry) { 
+    return 'BIZ' 
   }
 }
+
+module.exports = RandomGeneratorMock
+module.exports.default = RandomGeneratorMock

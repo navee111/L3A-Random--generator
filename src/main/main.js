@@ -7,12 +7,12 @@ let RandomGenerator
 
 async function loadModule() {
   try {
-    RandomGenerator = await import("Random--generator")
-  if (process.env.JEST_WORKER_ID) {
-    RandomGenerator = require("Random--generator")
-  } else {
-    RandomGenerator = await import("Random--generator") 
-  }
+    if (typeof jest !== 'undefined') {
+      RandomGenerator = require("Random--generator").default
+    } else {
+      RandomGenerator = await import("Random--generator")
+      RandomGenerator = RandomGenerator.default
+    }
   } catch (error) {
     console.error("Failed to load module:", error)
   }
@@ -54,7 +54,7 @@ class AppController {
   }
 
   #createGenerator() {
-    return new RandomGenerator.default()
+    return new RandomGenerator()
   }
 
   #generatePassword(config) {
