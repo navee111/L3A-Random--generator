@@ -274,8 +274,128 @@ Electron APIs (`ipcMain`, `ipcRenderer`, `BrowserWindow`) are used directly with
 
 ## Chapter 9: Unit Tests
 
-### Current State
-Unit tests are not yet implemented.
+### Implementation
+Following Clean Code's **F.I.R.S.T. principles**, I implemented a comprehensive testing suite:
+
+1. **Fast**: Tests run quickly using Jest with proper mocking
+   - Mock Electron APIs to avoid actual Electron overhead
+   - Mock RandomGenerator module to avoid external dependencies
+   - Tests complete in ~0.5 seconds
+
+2. **Independent**: Each test is isolated
+   - `beforeEach()` resets modules and mocks
+   - Each test creates fresh instances
+   - No shared state between tests
+
+3. **Repeatable**: Tests work consistently across environments
+   - Mock all external dependencies (Electron, RandomGenerator)
+   - Use JSDOM for DOM manipulation in renderer tests
+   - No reliance on file system or network
+
+4. **Self-Validating**: Clear pass/fail results
+   - Jest assertions: `expect(result).toBe('PWD')`
+   - No manual verification needed
+
+5. **Timely**: Tests written after implementation (not ideal, but complete)
+
+### Architecture Decisions
+
+**Jest Configuration**: Split into two projects for different environments:
+```javascript
+// jest.config.js
+projects: [
+  {
+    displayName: 'renderer',
+    testEnvironment: 'jsdom',  // DOM simulation
+    testMatch: ['**/__tests__/renderer/**/*.test.js']
+  },
+  {
+    displayName: 'main', 
+    testEnvironment: 'node',  // Node.js environment
+    testMatch: ['**/__tests__/main/**/*.test.js']
+  }
+]
+```
+
+**Mocking Strategy**: Used `moduleNameMapper` instead of `jest.mock()` to avoid double-mocking conflicts:
+```javascript
+moduleNameMapper: {
+  electron: '<rootDir>/test/mocks/electron.main.js',
+  'Random--generator': '<rootDir>/test/mocks/random-generator.js'
+}
+```
+
+**Dynamic Import Handling**: Solved Jest's VM import callback issue:
+```javascript
+// src/main/main.js
+if (typeof jest !== 'undefined') {
+  RandomGenerator = require("Random--generator").default
+} else {
+  RandomGenerator = await import("Random--generator")
+  RandomGenerator = RandomGenerator.default
+}
+```
+
+### Test Coverage
+
+**UIController Tests** (`test/__tests__/renderer/UIController.test.js`):
+-  `generatePassword()` updates DOM and enables copy button
+-  Error handling displays error messages correctly
+-  IPC communication works with mocked `ipcRenderer.invoke()`
+
+**AppController Tests** (`test/__tests__/main/AppController.test.js`):
+-  `init()` creates window and registers IPC handlers
+-  Password handler calls generator and returns expected value
+-  All 4 IPC handlers are registered correctly
+
+### Mock Implementation
+
+**Electron Mock** (`test/mocks/electron.main.js`):
+```javascript
+const app = { whenReady: () => Promise.resolve(), on: jest.fn() }
+const ipcMain = { handle: jest.fn() }
+const BrowserWindow = class { constructor(opts) { this.opts = opts } }
+```
+
+**RandomGenerator Mock** (`test/mocks/random-generator.js`):
+```javascript
+const RandomGeneratorMock = class {
+  generatePassword(length, options) { return 'PWD' }
+  generateName(type, gender) { return 'NAME' }
+  
+}
+module.exports = RandomGeneratorMock
+module.exports.default = RandomGeneratorMock
+```
+
+### Key Learnings
+
+1. **Jest Environment Separation**: Using separate projects for renderer (jsdom) vs main (node) prevents environment conflicts.
+
+2. **Mocking Strategy**: `moduleNameMapper` is cleaner than `jest.mock()` for module replacement, avoiding Jest's automatic mock wrapping.
+
+3. **Dynamic Import Challenges**: Jest doesn't handle dynamic imports well by default. The `typeof jest` detection provides a clean workaround.
+
+4. **Test Isolation**: Each test must be completely independent—no shared state, fresh instances, reset mocks.
+
+### What Could Be Improved
+
+1. **Test Coverage**: Currently only testing happy paths. I will add more test:
+   - Invalid config handling
+   - Network failure scenarios  
+   - Edge cases (empty strings, null values)
+     ( Its was quite challenging to test with jest since its my first electron project i will probaby will implement more test to be good at testing elctron apps. )
+
+2. **Integration Tests**: Current tests are unit tests. I will add:
+   - End-to-end tests with Playwright
+   - IPC communication integration tests
+
+3. **TDD Practice**: Tests were written after implementation. in the Future development i should follow TDD.
+
+### Results
+  ![test:](test.png)
+
+The testing infrastructure is now solid and demonstrates Clean Code's testing principles in practice.
 
 
 ---
@@ -423,13 +543,7 @@ Simple, readable, and declarative. However, there's no configuration system—al
 3. **Boundaries are powerful**—IPC creates natural separation that improves architecture
 4. **Writing this reflection** revealed issues I didn't see while coding—code review (including self-review) is essential
 
-### Next Steps
-1. Implement unit tests with proper mocking
-2. Refactor duplicated generator calls
-3. Add dependency injection
-4. Remove debug code and unused imports
-5. Add input validation layer
-6. Consider splitting UIController if complexity grows
+
 
 ---
 
