@@ -7,7 +7,7 @@ describe('AppController', () => {
   beforeEach(() => {
     jest.resetModules()
     electron = require('electron')
-    AppController = require('../../src/main/main.js').AppController
+    AppController = require('../../../src/main/main.js').AppController
   })
 
   test('init creates window and registers handlers', async () => {
