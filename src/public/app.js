@@ -111,3 +111,5 @@ async #handleGeneration(channel, config, resultElementId, copyButtonId) {
 document.addEventListener('DOMContentLoaded', () => {
   new UIController()
 })
+
+module.exports = { UIController }
