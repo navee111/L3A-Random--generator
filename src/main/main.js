@@ -83,9 +83,11 @@ class AppController {
   }
 }
 
- 
+// Export for testing
+module.exports = { AppController }
+
 // Only run the app lifecycle when executed directly, not when imported by tests
-if (require.main === module) {
+if (require.main === module || process.env.NODE_ENV !== 'test') {
   const controller = new AppController()
   app.whenReady().then(() => controller.init())
   
@@ -98,4 +100,3 @@ if (require.main === module) {
     }
   })
 }
-module.exports = { AppController }
