@@ -14,6 +14,7 @@ It eliminate the need for multiple online tools and makes sure that users can ge
 
 ### name generation 
 **FR4:** The system should generate random first and last names based on what users choose from name lists.
+
 **FR5:** The generated name should be displayed in the results area immediately after clicking the “Generate” button.
 
 ### username generation 
@@ -22,11 +23,13 @@ It eliminate the need for multiple online tools and makes sure that users can ge
 
 ### bussiness name generation 
 **FR8:** The system should generate creative business names by combining adjectives, nouns, or industry-related words.  
-**FR9:** The system should display the generated business name in the results section with animation. 
+**FR9:** The system should display the generated business name in the results section. 
 
 ### general features 
-**FR10:** The system should provide a responsive tab-based interface for users to switching between different generators. example below 
+**FR10:** The system should provide a responsive tab-based interface for users to switching between different generators.Example below
+
 ![App Screenshot](RG.jpeg)
+
 
 **FR11:** The system should include a “Copy” button for each generator.  
 **FR12:** The system should visually animate the result box each time new content is generated.  
