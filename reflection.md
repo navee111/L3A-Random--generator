@@ -12,10 +12,10 @@ I made a clear difference between public and private methods in `app.js` (lines 
 
 ### Critical Analysis
 A bug in `main.js` (line 81) where I wrote `Appcontroller` instead of `AppController` caused a reference error.(i might need glasses 🤣 took me a while to notise it) This is a perfect real-world example of:
-- **Avoiding disinformation**: Similar-looking names (`Appcontroller` vs `AppController`) cause confusion
+
 - **Consistency matters**: Capital 'C' in CamelCase is not optional—it's part of the contract
 
-Another issue: in `app.js` (line 4), I have a comment "hantera ui logik" in Swedish. Clean Code emphasizes using a **ubiquitous language**. Mixing languages violates this principle and creates barriers for international collaboration.
+Another issue: in `app.js` (line 4), I have a comment "hantera ui logik" in Swedish i changed it latter on. Clean Code emphasizes using a **ubiquitous language**. Mixing languages violates this principle and creates barriers for international collaboration.
 
 ### What Could Be Improved
 - DOM element IDs like `pwd-length` could be more explicit: `password-length-input`
