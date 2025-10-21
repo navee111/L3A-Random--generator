@@ -2,6 +2,8 @@
 
 A simple desktop app that generates random passwords, names, usernames, and business names.
 
+![App Screenshot](RGA.png)
+
 ## Download
 
 Download the latest version:
