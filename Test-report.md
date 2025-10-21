@@ -58,9 +58,10 @@
 
 ---
 
-### 3. Username Generation Testing
 
-**Test Cases:**
+### 3. Username Generation Testing 
+
+**Test Cases:** 
 - [✅ ] Generate username with different styles
 - [ ✅] Generate username with max length 5
 - [✅ ] Generate username with max length 10
@@ -69,6 +70,8 @@
 **Expected Results:**
 - Usernames includes numbers
 - Usernames are unique on regeneration
+
+ *** Note *** ( Due to lack of time i did not have the time to implement generate creative username and classic username ) (silly me forgot to implement in time 😫)
 
 ---
 
