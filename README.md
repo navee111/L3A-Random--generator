@@ -10,7 +10,7 @@ A simple desktop app that generates random passwords, names, usernames, and busi
 ## Download
 
 Download the latest version:
-[GitHub Releases](https://github.com/navee111/L3A-Random--generator/commits/v0.0.1)
+[GitHub Releases](https://github.com/navee111/L3A-Random--generator/releases/tag/v0.0.2)
 
 ### Available versions:
 - **macOS**: Download `.dmg` file
